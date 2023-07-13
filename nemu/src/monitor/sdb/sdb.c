@@ -73,7 +73,7 @@ static int cmd_x(char *args) {
 
   char *expr = strtok(NULL, "\0");
 
-  printf("%d, %s\n", n, expr);
+  printf("%d, %s, %x\n", n, expr,atoi(expr));
 
   
   for(;n>0;n--){
