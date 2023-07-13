@@ -73,14 +73,14 @@ static int cmd_x(char *args) {
 
   char *expr = strtok(NULL, "\0");
 
-  printf("%d, %s", n, expr);
+  printf("%d, %s\n", n, expr);
 
-  /*
-    for(;n>0;n--){
-      printf("%x\n",vaddr_read(atoi(expr),4));
-      expr += 4;
-    }
-  */
+  
+  for(;n>0;n--){
+    printf("%x\n",vaddr_read(atoi(expr),4));
+    expr += 4;
+  }
+  
   
   return 0;
 }
