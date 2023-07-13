@@ -17,6 +17,7 @@
 #include <cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <memory/vaddr.h>
 #include "sdb.h"
 
 static int is_batch_mode = false;
@@ -66,6 +67,20 @@ static int cmd_info_r(char *args) {
   return 0;
 }
 
+static int cmd_x(char *args) {
+  char *arg = strtok(NULL, " ");
+  int n = atoi(arg);
+
+  char *expr = strtok(NULL, "\0");
+
+
+  for(;n>=0;n--){
+    printf("%x\n",vaddr_read(atoi(expr),4));
+    expr += 4;
+  }
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -79,7 +94,8 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "Execute one instruction" , cmd_si },
-  { "info", "Print register's values", cmd_info_r }
+  { "info", "Print register's values", cmd_info_r },
+  { "x", "Print menmory space", cmd_x }
 };
 
 #define NR_CMD ARRLEN(cmd_table)
