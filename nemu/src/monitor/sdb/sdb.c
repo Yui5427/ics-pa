@@ -110,7 +110,7 @@ static int cmd_x(char *args) {
   
   for(;n>0;n--){
     printf("%x\n",vaddr_read(expr_value, 4));
-    expr += 4;
+    expr_value += 4;
   }
   
   
