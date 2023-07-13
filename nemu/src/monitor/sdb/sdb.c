@@ -74,7 +74,7 @@ static int cmd_x(char *args) {
   char *expr = strtok(NULL, "\0");
   int expr_value = strtoul(expr, NULL, 10);
 
-  printf("%d, %s, %lx\n", n, expr, strtoul(expr, NULL, 16));
+  printf("%d, %s, %x\n", n, expr, expr_value);
 
   
   for(;n>0;n--){
