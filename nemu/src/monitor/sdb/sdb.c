@@ -103,12 +103,13 @@ static int cmd_x(char *args) {
   int n = atoi(arg);
 
   char *expr = strtok(NULL, "\0");
-  long int expr_value = myAtoi(expr);
+  int expr_value = myAtoi(expr);
 
-  printf("%d, %s, %lx\n", n, expr, expr_value);
+  printf("%d, %s, %x\n", n, expr, expr_value);
 
   
   for(;n>0;n--){
+    printf("0x%x: ", expr_value);
     printf("%x\n",vaddr_read(expr_value, 4));
     expr_value += 4;
   }
