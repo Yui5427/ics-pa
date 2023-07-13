@@ -111,6 +111,9 @@ static int cmd_x(char *args) {
   for(;n>0;n--){
     printf("0x%x: ", expr_value);
     printf("0x%08x\n",vaddr_read(expr_value, 4));
+    for(int i = 0; i < 4; i++){
+      printf("%02x ", vaddr_read(expr_value + i, 1));
+    }
     expr_value += 4;
   }
   
