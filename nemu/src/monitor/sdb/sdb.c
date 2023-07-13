@@ -72,9 +72,9 @@ static int cmd_x(char *args) {
   int n = atoi(arg);
 
   char *expr = strtok(NULL, "\0");
-  int expr_value = strtoul(expr, NULL, 10);
+  long int expr_value = strtoul(expr, NULL, 10);
 
-  printf("%d, %s, %x\n", n, expr, expr_value);
+  printf("%d, %s, %lx\n", n, expr, expr_value);
 
   
   for(;n>0;n--){
