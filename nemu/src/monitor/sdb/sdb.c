@@ -77,7 +77,7 @@ static int cmd_x(char *args) {
 
   
   for(;n>0;n--){
-    printf("%x\n",vaddr_read(strtol(expr, NULL, 16),4));
+    printf("%x\n",vaddr_read(strtol(expr, NULL, 10),4));
     expr += 4;
   }
   
