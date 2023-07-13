@@ -72,12 +72,13 @@ static int cmd_x(char *args) {
   int n = atoi(arg);
 
   char *expr = strtok(NULL, "\0");
+  int expr_value = strtoul(expr, NULL, 10);
 
-  printf("%d, %s, %lx\n", n, expr, strtol(expr, NULL, 16));
+  printf("%d, %s, %lx\n", n, expr, strtoul(expr, NULL, 16));
 
   
   for(;n>0;n--){
-    printf("%x\n",vaddr_read(strtol(expr, NULL, 10),4));
+    printf("%x\n",vaddr_read(expr_value, 4));
     expr += 4;
   }
   
