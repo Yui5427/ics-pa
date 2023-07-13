@@ -106,7 +106,8 @@ static int cmd_x(char *args) {
   int expr_value = myAtoi(expr);
 
   //printf("%d, %s, %x\n", n, expr, expr_value);
-  
+  printf("Address\t");
+
   for(;n>0;n--){
     printf("0x%x:\t", expr_value);
     printf("0x%08x",vaddr_read(expr_value, 4));
