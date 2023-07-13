@@ -43,6 +43,37 @@ static char* rl_gets() {
   return line_read;
 }
 
+int myAtoi(char *str)
+{
+  int res = 0;
+  if(str[0] != '0') {
+    int i = 0;
+    while(i < strlen(str)) {
+      res = res * 10 + str[i] - '0';
+      i++;
+    }
+  } else if(strlen(str) >=2 && str[1] == 'x') {
+    int i = 2;
+    while(i < strlen(str)) {
+      if(str[i] >= '0' && str[i] <= '9') {
+        res = res * 16 + str[i] - '0';
+      } else if(str[i] >= 'a' && str[i] <= 'f') {
+        res = res * 16 + str[i] - 'a' + 10;
+      } else if(str[i] >= 'A' && str[i] <= 'F') {
+        res = res * 16 + str[i] - 'A' + 10;
+      }
+      i++;
+    }
+  } else {
+    int i = 1;
+    while(i < strlen(str)) {
+      res = res * 8 + str[i] - '0';
+      i++;
+    }
+  }
+  return res;
+}
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -72,7 +103,7 @@ static int cmd_x(char *args) {
   int n = atoi(arg);
 
   char *expr = strtok(NULL, "\0");
-  long int expr_value = strtoul(expr, NULL, 10);
+  long int expr_value = myAtoi(expr);
 
   printf("%d, %s, %lx\n", n, expr, expr_value);
 
