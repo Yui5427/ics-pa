@@ -106,7 +106,7 @@ static int cmd_x(char *args) {
   int expr_value = myAtoi(expr);
 
   //printf("%d, %s, %x\n", n, expr, expr_value);
-  printf("  Address\t\t  Dword block\t\t Byte sequence\n");
+  printf("  Address\tDword block\tByte sequence\n");
 
   for(;n>0;n--){
     printf("0x%x:\t", expr_value);
