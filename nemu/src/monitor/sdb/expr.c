@@ -83,11 +83,13 @@ static bool make_token(char *e) {
   printf("%s\n", e);
 
   while (e[position] != '\0') {
+    printf("2\n");
+
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 
-        printf("2\n");
+        printf("3\n");
 
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
