@@ -135,7 +135,7 @@ static bool make_token(char *e) {
           case ')': tokens[nr_token].type=')'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
 
 
-          default: TODO();
+          default: Log("This token is not matched: %s", e+position); return false;
         }
 
         break;
