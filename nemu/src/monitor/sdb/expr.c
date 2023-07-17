@@ -151,11 +151,90 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p, int q) {
-  return false;
+  if(tokens[p].str[0]!='('||tokens[q].str[0]!=')')
+    return false;
+  if(tokens[p].str[0] == '(') {
+    int i=p+1;
+    int count=1;
+    for(;i<=q;i++){
+      if(tokens[i].str[0]=='(')
+        count++;
+      else if(tokens[i].str[0]==')')
+        count--;
+    }
+    if(count != 1)
+      return false;
+  }
+  return true;
+};
+
+char getMainOp(int p, int q, int* position) {
+  int i=p;
+  int count=0;
+  int mainOp=-1;
+  int mainOpPriority=-1;
+  for(;i<=q;i++){
+    if(tokens[i].str[0]=='(')
+      count++;
+    else if(tokens[i].str[0]==')')
+      count--;
+    else if(count==0){
+      if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
+        if(mainOpPriority<1){
+          mainOpPriority=1;
+          mainOp=i;
+          *position = i;
+        }
+      }
+      else if(tokens[i].str[0]=='*'||tokens[i].str[0]=='/'){
+        if(mainOpPriority<2){
+          mainOpPriority=2;
+          mainOp=i;
+          *position = i;
+        }
+      }
+    }
+  }
+  return mainOp;
 };
 
 word_t eval(int p, int q) {
-  return 0;
+  if(p>q) {
+    return -1;
+  } else if(p == q) {
+    word_t ret;
+    if(tokens[p].type == TK_HEX) {
+      sscanf(tokens[p].str, "%ux", &ret);
+      return ret;
+    } else if(tokens[p].type == TK_DEC) {
+      sscanf(tokens[p].str, "%ud", &ret);
+      return ret;
+    } else {
+      printf("This token is not a valueable thing: %s\n", tokens[p].str);
+      return -1;
+    }
+  } else if(check_parentheses(p,q) == true) {
+    return eval(p+1, q-1);
+  } else {
+    int posi;
+    char op_type = getMainOp(p, q, &posi);
+    word_t val1 = eval(p, posi-1);
+    word_t val2 = eval(posi+1, q);
+
+    switch (op_type)
+    {
+    case '+':
+      return val1+val2;
+    case '-':
+      return val1-val2;
+    case '*':
+      return val1*val2;
+    case '/':
+      return val1/val2;
+    default:
+      assert(0);
+    }
+  }
 };
 
 word_t expr(char *e, bool *success) {
@@ -168,6 +247,10 @@ word_t expr(char *e, bool *success) {
   for(int i=0;i<nr_token;i++){
     printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
   }
+
+  word_t ret = eval(0, nr_token-1);
+  *success = true;
+  return ret;
 
   return 0;
 }
