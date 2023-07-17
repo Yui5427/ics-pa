@@ -82,7 +82,7 @@ static bool make_token(char *e) {
   printf("1\n");
   printf("%s\n", e);
   printf("%d\n", TK_EQ);
-  
+
   while (e[position] != '\0') {
     printf("2\n");
 
@@ -91,6 +91,7 @@ static bool make_token(char *e) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 
         printf("3\n");
+        printf("%d\n", pmatch.rm_so);
         printf("%d\n", pmatch.rm_eo);
 
         char *substr_start = e + position;
