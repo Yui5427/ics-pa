@@ -171,7 +171,7 @@ bool check_parentheses(int p, int q) {
 char getMainOp(int p, int q, int* position) {
   int i=p;
   int count=0;
-  int mainOp=-1;
+  char mainOp=-1;
   int mainOpPriority=-1;
   for(;i<=q;i++){
     if(tokens[i].str[0]=='(')
@@ -182,14 +182,14 @@ char getMainOp(int p, int q, int* position) {
       if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
         if(mainOpPriority<1){
           mainOpPriority=1;
-          mainOp=i;
+          mainOp=tokens[i].str[0];
           *position = i;
         }
       }
       else if(tokens[i].str[0]=='*'||tokens[i].str[0]=='/'){
         if(mainOpPriority<2){
           mainOpPriority=2;
-          mainOp=i;
+          mainOp=tokens[i].str[0];
           *position = i;
         }
       }
@@ -232,6 +232,7 @@ word_t eval(int p, int q) {
     case '/':
       return val1/val2;
     default:
+      printf("Wrong Operator\n");
       assert(0);
     }
   }
