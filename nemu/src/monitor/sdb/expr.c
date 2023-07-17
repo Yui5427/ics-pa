@@ -39,12 +39,12 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
-  {"\\-", '-'},         // minus
   {"==", TK_EQ},        // equal
   {"0x[a-fA-F0-9]+", TK_HEX},   // HEX
   {"\\d+", TK_DEC},     // DEC
   {"\\$[a-z]+", TK_REG},// REG
+  {"\\+", '+'},         // plus
+  {"\\-", '-'},         // minus
   {"\\*", '*'},         // multiply
   {"\\/", '/'},         // divide
   {"\\(", '('},         // left bracket
