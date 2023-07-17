@@ -102,8 +102,9 @@ static int cmd_x(char *args) {
   char *arg = strtok(NULL, " ");
   int n = atoi(arg);
 
-  char *expr = strtok(NULL, "\0");
-  int expr_value = myAtoi(expr);
+  char *e = strtok(NULL, "\0");
+  bool ok = false;
+  word_t expr_value = expr(e, &ok);
 
   //printf("%d, %s, %x\n", n, expr, expr_value);
   printf("Address\t\tDword block\tByte sequence\n");
