@@ -25,6 +25,8 @@ enum {
 
   /* TODO: Add more token types */
   TK_HEX,
+  TK_DEC,
+  TK_REG,
 };
 
 static struct rule {
@@ -40,7 +42,14 @@ static struct rule {
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
   {"==", TK_EQ},        // equal
-  {"0x\\d+", TK_HEX},        // equal
+  {"0x\\d+", TK_HEX},   // HEX
+  {"\\d+", TK_DEC},     // DEC
+  {"\\$[a-z]+", TK_REG},// REG
+  {"\\*", '*'},         // multiply
+  {"\\/", '/'},         // divide
+  {"\\(", '('},         // left bracket
+  {"\\)", ')'},         // right bracket
+
 };
 
 #define NR_REGEX ARRLEN(rules)
