@@ -150,6 +150,13 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(int p, int q) {
+  return false;
+};
+
+word_t eval(int p, int q) {
+  return 0;
+};
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -158,7 +165,9 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  for(int i=0;i<nr_token;i++){
+    printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
+  }
 
   return 0;
 }
