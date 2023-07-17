@@ -100,8 +100,11 @@ static bool make_token(char *e) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 
         printf("3\n");
-        printf("%d\n", pmatch.rm_so);
-        printf("%d\n", pmatch.rm_eo);
+        int j=pmatch.rm_so;
+        for(;j<pmatch.rm_eo;j++){
+          printf("%c",e[position+j]);
+        }
+        printf("\n");
 
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
