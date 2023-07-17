@@ -41,7 +41,7 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"==", TK_EQ},        // equal
   {"0x[a-fA-F0-9]+", TK_HEX},   // HEX
-  {"\\d+", TK_DEC},     // DEC
+  {"\\[0-9]+", TK_DEC},     // DEC
   {"\\$[a-z]+", TK_REG},// REG
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
@@ -110,7 +110,6 @@ static bool make_token(char *e) {
 
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
-        printf("%d\n",rules[i].token_type);
 
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
