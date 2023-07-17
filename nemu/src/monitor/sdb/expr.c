@@ -131,6 +131,15 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
           case TK_EQ: tokens[nr_token].type=TK_EQ; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case TK_HEX: tokens[nr_token].type=TK_HEX; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case TK_DEC: tokens[nr_token].type=TK_DEC; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case TK_REG: tokens[nr_token].type=TK_REG; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case '+': tokens[nr_token].type='+'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case '-': tokens[nr_token].type='-'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case '*': tokens[nr_token].type='*'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case '/': tokens[nr_token].type='/'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case '(': tokens[nr_token].type='('; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case ')': tokens[nr_token].type=')'; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
 
 
           default: TODO();
