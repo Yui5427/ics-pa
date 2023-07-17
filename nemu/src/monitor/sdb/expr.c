@@ -78,6 +78,15 @@ typedef struct token {
   char str[32];
 } Token;
 
+void getSubStr(char *e, int start, int end, char *subStr)
+{
+  int i=start;
+  for(;i<end;i++){
+    subStr[i+start]=e[i];
+  }
+  subStr[i+start]='\0';
+}
+
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
@@ -120,6 +129,10 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
+          case TK_NOTYPE: break;
+          case TK_EQ: tokens[nr_token].type=TK_EQ; getSubStr(e+position, pmatch.rm_so, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+
+
           default: TODO();
         }
 
