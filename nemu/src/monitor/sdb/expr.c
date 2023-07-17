@@ -102,7 +102,7 @@ static bool make_token(char *e) {
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         int j=pmatch.rm_so;
-        printf("\033[31m");
+        printf("\033[31mToken:\t");
         for(;j<pmatch.rm_eo;j++){
           printf("%c",e[position+j]);
         }
