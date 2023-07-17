@@ -82,6 +82,7 @@ static bool make_token(char *e) {
   printf("1\n");
   printf("%s\n", e);
   printf("%d\n", TK_EQ);
+  
   while (e[position] != '\0') {
     printf("2\n");
 
