@@ -123,18 +123,18 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
-          case TK_EQ: tokens[nr_token].type=TK_EQ; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case TK_HEX: tokens[nr_token].type=TK_HEX; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case TK_DEC: tokens[nr_token].type=TK_DEC; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case TK_REG: tokens[nr_token].type=TK_REG; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case '+': tokens[nr_token].type='+'; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case '-': tokens[nr_token].type='-'; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case '*': tokens[nr_token].type='*'; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case '/': tokens[nr_token].type='/'; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case '(': tokens[nr_token].type='('; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
-          case ')': tokens[nr_token].type=')'; getSubStr(e+pmatch.rm_so, 0, pmatch.rm_eo,tokens[nr_token].str); nr_token++; break;
+          case TK_EQ: tokens[nr_token].type=TK_EQ; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case TK_HEX: tokens[nr_token].type=TK_HEX; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case TK_DEC: tokens[nr_token].type=TK_DEC; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case TK_REG: tokens[nr_token].type=TK_REG; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case '+': tokens[nr_token].type='+'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case '-': tokens[nr_token].type='-'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case '*': tokens[nr_token].type='*'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case '/': tokens[nr_token].type='/'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case '(': tokens[nr_token].type='('; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case ')': tokens[nr_token].type=')'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
 
-          default: Log("This token is not matched: %s", e+position); return false;
+          default: Log("This token is not matched: %s", substr_start); return false;
         }
 
         break;
