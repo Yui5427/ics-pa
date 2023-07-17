@@ -205,9 +205,11 @@ word_t eval(int p, int q) {
     word_t ret;
     if(tokens[p].type == TK_HEX) {
       sscanf(tokens[p].str, "%ux", &ret);
+      printf("ret is: %08x\n", ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
+      printf("ret is: %08x\n", ret);
       return ret;
     } else {
       printf("This token is not a valueable thing: %s\n", tokens[p].str);
