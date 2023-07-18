@@ -171,9 +171,13 @@ void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
 
-void split(char *str, char *out1, char *out2) {
-  out1 = str;
-  
+void split(char *str, char **out1, char **out2) {
+  *out1 = str;
+  int i=0;
+  while(str[i] != ' ') {
+    i++;
+  }
+  *out2 = str + i + 1;
 }
 
 void sdb_mainloop() {
