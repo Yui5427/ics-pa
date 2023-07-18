@@ -178,9 +178,29 @@ void sdb_mainloop() {
   }
 
   // expr test code region
-  FILE *fp = fopen("/tmp/.expr_out", "r");
+  FILE *fp = fopen("/home/rez/ics2022/nemu/src/monitor/input", "r");
   assert(fp != NULL);
-  
+
+  //char *sum = strtok(NULL, " ");
+  //char *ex = strtok(NULL, "\n");
+
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
+  while ((read = getline(&line, &len, fp)) != -1) {
+    bool success = false;
+    //word_t result = expr(line, &success);
+    if (success) {
+      //printf("%s = %u\n", line, result);
+      printf("%s\n", line);
+    } else {
+      printf("Invalid expression\n");
+    }
+  }
+
+  fclose(fp);
+  if(line)
+    free(line);
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
