@@ -16,6 +16,7 @@
 #include <isa.h>
 #include <cpu/cpu.h>
 #include <readline/readline.h>
+#include <stdio.h>
 #include <readline/history.h>
 #include <memory/vaddr.h>
 #include "sdb.h"
@@ -175,6 +176,11 @@ void sdb_mainloop() {
     cmd_c(NULL);
     return;
   }
+
+  // expr test code region
+  FILE *fp = fopen("/tmp/.expr_out", "r");
+  assert(fp != NULL);
+  
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
