@@ -186,8 +186,8 @@ void sdb_mainloop() {
   ssize_t read;
   while ((read = getline(&line, &len, fp)) != -1) {
     bool success = false;
-    char *sum = strtok(NULL, " ");
-    char *ex = strtok(NULL, "\n");
+    char *sum = strtok(line, " ");
+    char *ex = strtok(line, "\n");
     word_t result = expr(ex, &success);
     if (success) {
       printf("right sum:%s, %s = %u\n",sum, line, result);
