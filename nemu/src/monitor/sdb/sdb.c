@@ -199,7 +199,7 @@ void sdb_mainloop() {
     char *ex;
     split(line, &sum, &ex);
     printf("sum:%s, ex:%s\n", sum, ex);
-    ex[sizeof(ex)] = 0;
+    ex[sizeof(ex)] = ' ';
     
     word_t result = expr(ex, &success);
     if (success) {
