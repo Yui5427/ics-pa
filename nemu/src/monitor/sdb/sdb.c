@@ -93,7 +93,7 @@ static int cmd_si(char *args) {
 static int cmd_info_r(char *args) {
   if(args[0] == 'r')
   {
-    printf("I'm here\n");
+    //printf("I'm here\n");
     isa_reg_display();
   }
   return 0;
