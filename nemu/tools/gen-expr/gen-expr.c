@@ -41,18 +41,12 @@ uint32_t choose(uint32_t n) {
 void writeToBuf(char *str, int len) {
   if(bufPtr + len >= sizeof(buf)) {
     isFull = 1;
-    printf("buf is full\n");
+    //printf("buf is full\n");
   }
-  printf("str:%s\n", str);
-  //memcpy(buf + bufPtr, str, len);
-
   int i;
   for(i=0;i<len;i++){
     buf[bufPtr++] = str[i];
   }
-
-  printf("buf:%s\n", buf);
-  //bufPtr += len;
 }
 
 int checknTok() {
@@ -77,16 +71,12 @@ static void gen_num() {
   switch (choose(2))
   {
   case 0:
-    sprintf(temp, "0x%08x\0", num);
-    printf("%s\n", temp);
+    sprintf(temp, "0x%08x", num);
     writeToBuf(temp, charLen(temp));
-    //printf("Hex: %s\n", temp);
     break;
   default:
-    sprintf(temp, "%d\0", num);
-    printf("%s\n", temp);
+    sprintf(temp, "%d", num);
     writeToBuf(temp, charLen(temp));
-    //printf("Dec: %s\n", temp);
     break;
   }
 }
@@ -119,16 +109,20 @@ static void gen_rand_expr() {
   {
   case 0:
     gen_num();
+    ntok++;
     break;
   case 1:
     gen('(');
+    ntok++;
     gen_rand_expr();
     gen(')');
+    ntok++;
     break;
   
   default:
     gen_rand_expr();
     gen_rand_op();
+    ntok++;
     gen_rand_expr();
     break;
   }
@@ -147,14 +141,16 @@ int main(int argc, char *argv[]) {
     memset(code_buf, 0, sizeof(code_buf));
     bufPtr = 0;
     isFull = 0;
+    ntok = 0;
     gen_rand_expr();
 
     if(isFull)
       continue;
 
-    //printf("%s\n", buf);
+    if(ntok>32)
+      continue;
+
     sprintf(code_buf, code_format, buf);
-    //printf("%s\n", code_buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");
     assert(fp != NULL);
