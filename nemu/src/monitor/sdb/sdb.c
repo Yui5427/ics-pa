@@ -195,10 +195,10 @@ void sdb_mainloop() {
   ssize_t read;
   while ((read = getline(&line, &len, fp)) != -1) {
     bool success = false;
-    printf("line:%s\n", line);
     char *sum;
     char *ex;
     split(line, &sum, &ex);
+    printf("sum:%s, ex:%s\n", sum, ex);
     
     word_t result = expr(ex, &success);
     if (success) {
