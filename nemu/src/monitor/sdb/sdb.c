@@ -200,12 +200,9 @@ void sdb_mainloop() {
     char *ex;
     split(line, &sum, &ex);
     
-    printf("left sum:%s\n", sum);
-    printf("expr:%s\n", ex);
-    //char *ex = strtok(line, "\n");
-    //word_t result = expr(line, &success);
+    word_t result = expr(ex, &success);
     if (success) {
-      //printf("right sum:%s, %s = %u\n",sum, line, result);
+      printf("right sum:%s, %s = %u\n",sum, line, result);
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
