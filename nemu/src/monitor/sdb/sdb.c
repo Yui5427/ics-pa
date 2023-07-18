@@ -187,10 +187,12 @@ void sdb_mainloop() {
   while ((read = getline(&line, &len, fp)) != -1) {
     bool success = false;
     char *sum = strtok(line, " ");
+    printf("left sum:%s\n", sum);
+    printf("line:%s\n", line);
     //char *ex = strtok(line, "\n");
-    word_t result = expr(line, &success);
+    //word_t result = expr(line, &success);
     if (success) {
-      printf("right sum:%s, %s = %u\n",sum, line, result);
+      //printf("right sum:%s, %s = %u\n",sum, line, result);
       //printf("%s\n", line);
     } else {
       printf("Invalid expression\n");
