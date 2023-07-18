@@ -62,6 +62,15 @@ int checknTok() {
   return 0;
 }
 
+int charLen(char *str) {
+  int len = 0;
+  while(*str != '\0') {
+    len++;
+    str++;
+  }
+  return len;
+}
+
 static void gen_num() {
   char temp[32];
   uint32_t num = rand() % INT32_MAX / 10 + 1;
@@ -69,12 +78,14 @@ static void gen_num() {
   {
   case 0:
     sprintf(temp, "0x%08x\0", num);
-    writeToBuf(temp, sizeof(10));
+    printf("%s\n", temp);
+    writeToBuf(temp, charLen(temp));
     //printf("Hex: %s\n", temp);
     break;
   default:
     sprintf(temp, "%d\0", num);
-    writeToBuf(temp, sizeof(temp));
+    printf("%s\n", temp);
+    writeToBuf(temp, charLen(temp));
     //printf("Dec: %s\n", temp);
     break;
   }
