@@ -188,7 +188,7 @@ void sdb_mainloop() {
   size_t len = 0;
   ssize_t read;
   while ((read = getline(&line, &len, fp)) != -1) {
-    bool success = false;
+    bool success = true;
     //word_t result = expr(line, &success);
     if (success) {
       //printf("%s = %u\n", line, result);
