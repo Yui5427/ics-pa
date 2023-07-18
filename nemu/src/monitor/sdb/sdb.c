@@ -171,6 +171,11 @@ void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
 
+void split(char *str, char *out1, char *out2) {
+  out1 = str;
+  
+}
+
 void sdb_mainloop() {
   if (is_batch_mode) {
     cmd_c(NULL);
