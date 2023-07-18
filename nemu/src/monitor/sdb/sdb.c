@@ -181,18 +181,17 @@ void sdb_mainloop() {
   FILE *fp = fopen("/home/rez/ics2022/nemu/src/monitor/input", "r");
   assert(fp != NULL);
 
-  //char *sum = strtok(NULL, " ");
-  //char *ex = strtok(NULL, "\n");
-
   char *line = NULL;
   size_t len = 0;
   ssize_t read;
   while ((read = getline(&line, &len, fp)) != -1) {
-    bool success = true;
-    //word_t result = expr(line, &success);
+    bool success = false;
+    char *sum = strtok(NULL, " ");
+    char *ex = strtok(NULL, "\n");
+    word_t result = expr(ex, &success);
     if (success) {
-      //printf("%s = %u\n", line, result);
-      printf("%s\n", line);
+      printf("right sum:%s, %s = %u\n",sum, line, result);
+      //printf("%s\n", line);
     } else {
       printf("Invalid expression\n");
     }
