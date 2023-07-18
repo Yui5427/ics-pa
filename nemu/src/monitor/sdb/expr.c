@@ -205,14 +205,14 @@ word_t eval(int p, int q) {
     word_t ret;
     if(tokens[p].type == TK_HEX) {
       sscanf(tokens[p].str+2, "%08x", &ret);
-      //printf("str is: %s, ret is: %08x\n", tokens[p].str, ret);
+      printf("str is: %s, ret is: %08x\n", tokens[p].str, ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
-      //printf("str is: %s, ret is: %08d\n", tokens[p].str, ret);
+      printf("str is: %s, ret is: %08d\n", tokens[p].str, ret);
       return ret;
     } else {
-      //printf("This token is not a valueable thing: %s\n", tokens[p].str);
+      printf("This token is not a valueable thing: %s\n", tokens[p].str);
       return -1;
     }
   } else if(check_parentheses(p,q) == true) {
