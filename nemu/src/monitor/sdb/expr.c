@@ -229,7 +229,7 @@ word_t eval(int p, int q) {
     //printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     int posi;
     char op_type = getMainOp(p, q, &posi);
-    //printf("position: %d", posi);
+    printf("position: %d", posi);
     word_t val1 = eval(p, posi-1);
     word_t val2 = eval(posi+1, q);
 
