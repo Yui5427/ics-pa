@@ -162,7 +162,7 @@ bool check_parentheses(int p, int q) {
       else if(tokens[i].str[0]==')')
         count--;
     }
-    if(count != 1)
+    if(count != 0)
       return false;
   }
   return true;
