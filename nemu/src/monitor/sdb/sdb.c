@@ -106,6 +106,7 @@ static int cmd_x(char *args) {
   char *e = strtok(NULL, "\0");
   bool ok = false;
   word_t expr_value = expr(e, &ok);
+  printf("expr_value: %08x", expr_value);
 
   if(!ok)
   {
@@ -118,7 +119,7 @@ static int cmd_x(char *args) {
     return 0;
   }
 
-  printf("N:%d, Expr:%s, Value:%08x, ok?:%b\n", n, e, expr_value, ok);
+  printf("N:%d, Expr:%s, Value:%08x, ok?:%d\n", n, e, expr_value, ok);
   printf("Address\t\tDword block\tByte sequence\n");
 
   for(;n>0;n--){
