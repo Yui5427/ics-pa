@@ -201,13 +201,30 @@ char getMainOp(int p, int q, int* position) {
   return mainOp;
 };
 
+word_t hexToU32(char* str) {
+  word_t ret;
+  int i = 9;
+  for(;i>=2;i++) {
+    if(str[i]>='0'&&str[i]<='9')
+      ret += (str[i]-'0')<<(16*i);
+    else if(str[i]>='a'&&str[i]<='f')
+      ret += (str[i]-'a'+10)<<(16*i);
+    else if(str[i]>='A'&&str[i]<='F')
+      ret += (str[i]-'A'+10)<<(16*i);
+    else
+      return -1;
+  }
+  return ret;
+}
+
 word_t eval(int p, int q) {
   if(p>q) {
     return -1;
   } else if(p == q) {
     word_t ret;
     if(tokens[p].type == TK_HEX) {
-      sscanf(tokens[p].str+2, "%ux", &ret);
+      //sscanf(tokens[p].str+2, "%ux", &ret);
+      ret = hexToU32(tokens[p].str);
       printf("ret=%ud\n", ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
