@@ -164,6 +164,9 @@ bool check_parentheses(int p, int q) {
     }
     if(count != 0)
       return false;
+    else if(i != q)
+      return false;
+
   }
   return true;
 };
