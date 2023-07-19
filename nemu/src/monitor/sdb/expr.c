@@ -261,12 +261,12 @@ word_t expr(char *e, bool *success) {
   if(isDivByZero == 1) {
     *success = false;
     isDivByZero = 0;
-    printf("isSuccess? :%d\n", *success);
+    //printf("isSuccess? :%d\n", *success);
     return 0;
   }
-
+  isDivByZero = 0;
   *success = true;
-  printf("isSuccess? :%d\n", *success);
+  //printf("isSuccess? :%d\n", *success);
   return ret;
 
   return 0;
