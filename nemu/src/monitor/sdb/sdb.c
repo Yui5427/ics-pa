@@ -199,6 +199,7 @@ void sdb_mainloop() {
     strcpy(copy_line, line);
 
     printf("line_num: %d\n",line_num);
+    line_num++;
 
     bool success = false;
     char *sum = strtok(copy_line, " ");
