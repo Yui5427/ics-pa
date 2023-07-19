@@ -260,10 +260,12 @@ word_t expr(char *e, bool *success) {
   word_t ret = eval(0, nr_token-1);
   if(isDivByZero == 1) {
     *success = false;
+    printf("isSuccess? :%d", *success);
     return 0;
   }
   isDivByZero = 0;
   *success = true;
+  printf("isSuccess? :%d", *success);
   return ret;
 
   return 0;
