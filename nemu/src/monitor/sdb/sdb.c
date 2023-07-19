@@ -192,16 +192,13 @@ void sdb_mainloop() {
   ssize_t read;
   int line_num = 0;
   while ((read = getline(&line, &len, fp)) != -1) {
-    //strcpy(copy_line, line);
-
     printf("line_num: %d\n",line_num);
+    printf("line: %s\n", line);
     line_num++;
 
     bool success = false;
     char *sum = strtok(line, " ");
-    //strcpy(line, sum);
     char *ex = strtok(NULL, "\n");
-    //strcpy(copy_ex, ex);
     word_t result = expr(ex, &success);
     if (success) {
       printf("\n");
