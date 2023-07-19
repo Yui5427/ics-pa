@@ -200,10 +200,12 @@ char getMainOp(int p, int q, int* position) {
 
 word_t eval(int p, int q) {
   if(p>q) {
-    printf("1");
+    printf("1\n");
+    printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     return -1;
   } else if(p == q) {
-    printf("2");
+    printf("2\n");
+    printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     word_t ret;
     if(tokens[p].type == TK_HEX) {
       sscanf(tokens[p].str+2, "%08x", &ret);
@@ -218,10 +220,12 @@ word_t eval(int p, int q) {
       return -1;
     }
   } else if(check_parentheses(p,q) == true) {
-    printf("3");
+    printf("3\n");
+    printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     return eval(p+1, q-1);
   } else {
-    printf("4");
+    printf("4\n");
+    printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     int posi;
     char op_type = getMainOp(p, q, &posi);
     word_t val1 = eval(p, posi-1);
