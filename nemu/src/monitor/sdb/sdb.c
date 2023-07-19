@@ -199,8 +199,9 @@ void sdb_mainloop() {
     line[sizeof(line)] = ' ';
 
 
-    printf("line:%s\n", line);
+    printf("line1:%s\n", line);
     char *sum = strtok(line, " ");
+    printf("line2:%s\n", line);
     char *ex = strtok(line, "\n");
     printf("sum:%s, ex:%s\n", sum, ex);
 
