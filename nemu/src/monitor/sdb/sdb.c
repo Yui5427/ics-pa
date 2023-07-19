@@ -195,15 +195,16 @@ void sdb_mainloop() {
   ssize_t read;
   while ((read = getline(&line, &len, fp)) != -1) {
     bool success = false;
-    char *sum;
-    char *ex;
-    split(line, &sum, &ex);
+    //split(line, &sum, &ex);
+    line[sizeof(line)] = ' ';
+
+    char *sum = strtok(NULL, " ");
+    char *ex = strtok(NULL, " ");
     printf("sum:%s, ex:%s\n", sum, ex);
-    ex[sizeof(ex)] = ' ';
-    
-    //word_t result = expr(ex, &success);
+
+    word_t result = expr(ex, &success);
     if (success) {
-      //printf("right sum:%s, %s = %u\n",sum, line, result);
+      printf("right sum:%s, %s = %u\n",sum, line, result);
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
