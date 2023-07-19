@@ -200,7 +200,6 @@ void sdb_mainloop() {
     char *sum = strtok(line, " ");
     char *ex = strtok(NULL, "\n");
     word_t result = expr(ex, &success);
-    printf("is success?:%d\n", success);
     if (success) {
       printf("\n");
       printf("line: %s\n", line);
