@@ -203,38 +203,26 @@ char getMainOp(int p, int q, int* position) {
 
 word_t eval(int p, int q) {
   if(p>q) {
-    printf("1\n");
-    //printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     return -1;
   } else if(p == q) {
-    printf("2\n");
-    printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     word_t ret;
     if(tokens[p].type == TK_HEX) {
       sscanf(tokens[p].str+2, "%08x", &ret);
-      printf("str is: %s, ret is: %08x\n", tokens[p].str, ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
-      printf("str is: %s, ret is: %08d\n", tokens[p].str, ret);
       return ret;
     } else {
       printf("This token is not a valueable thing: %s\n", tokens[p].str);
       return -1;
     }
   } else if(check_parentheses(p,q) == true) {
-    printf("3\n");
-    //printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     return eval(p+1, q-1);
   } else {
-    printf("4\n");
-    //printf("p: %d, p_val:%s, q: %d, q_val:%s\n", p, tokens[p].str, q, tokens[q].str);
     int posi;
     char op_type = getMainOp(p, q, &posi);
-    printf("position: %d\n", posi);
     word_t val1 = eval(p, posi-1);
     word_t val2 = eval(posi+1, q);
-    printf("val1: %d, op: %c, val2: %d\n", val1, op_type, val2);
 
     switch (op_type)
     {
@@ -266,7 +254,7 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   for(int i=0;i<nr_token;i++){
-    printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
+    //printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
   }
 
   word_t ret = eval(0, nr_token-1);
