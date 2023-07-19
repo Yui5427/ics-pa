@@ -202,7 +202,7 @@ char getMainOp(int p, int q, int* position) {
 };
 
 word_t hexToU32(char* str) {
-  word_t ret;
+  word_t ret=0;
   int i = 9;
   for(;i>=2;i++) {
     if(str[i]>='0'&&str[i]<='9')
