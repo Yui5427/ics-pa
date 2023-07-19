@@ -211,7 +211,6 @@ void sdb_mainloop() {
     if (success) {
       printf("\n");
       printf("line: %s", copy_line);
-      printf("line: %s\n", line);
       printf("sum:%s, result: %u\n",sum, result);
       //printf("%s\n", line);
     } else {
