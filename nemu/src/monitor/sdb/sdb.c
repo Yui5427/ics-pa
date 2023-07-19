@@ -106,7 +106,7 @@ static int cmd_x(char *args) {
   char *e = strtok(NULL, "\0");
   bool ok = false;
   word_t expr_value = expr(e, &ok);
-  printf("expr_value: %08x", expr_value);
+  printf("expr_value: %08x\n", expr_value);
 
   if(!ok)
   {
