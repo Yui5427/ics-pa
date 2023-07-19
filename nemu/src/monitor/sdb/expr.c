@@ -247,13 +247,10 @@ word_t eval(int p, int q) {
     switch (op_type)
     {
     case '+':
-      printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
       return val1+val2;
     case '-':
-      printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1-val2);
       return val1-val2;
     case '*':
-      printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1*val2);
       return val1*val2;
     case '/':
       if(val2 == 0) {
@@ -261,7 +258,6 @@ word_t eval(int p, int q) {
         isDivByZero = 1;
         return 0;
       }
-      printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1/val2);
       return val1/val2;
     default:
       printf("Wrong Operator\n");
