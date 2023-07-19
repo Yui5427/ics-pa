@@ -200,8 +200,8 @@ void sdb_mainloop() {
 
 
     printf("line:%s\n", line);
-    char *sum = strtok(NULL, " ");
-    char *ex = strtok(NULL, "\n");
+    char *sum = strtok(line, " ");
+    char *ex = strtok(line, "\n");
     printf("sum:%s, ex:%s\n", sum, ex);
 
     word_t result = expr(ex, &success);
