@@ -206,11 +206,11 @@ word_t hexToU32(char* str) {
   int i = 9;
   for(;i>=2;i++) {
     if(str[i]>='0'&&str[i]<='9')
-      ret += (str[i]-'0')<<(16*i);
+      ret += (str[i]-'0')<<(4*i);
     else if(str[i]>='a'&&str[i]<='f')
-      ret += (str[i]-'a'+10)<<(16*i);
+      ret += (str[i]-'a'+10)<<(4*i);
     else if(str[i]>='A'&&str[i]<='F')
-      ret += (str[i]-'A'+10)<<(16*i);
+      ret += (str[i]-'A'+10)<<(4*i);
     else
       return -1;
   }
