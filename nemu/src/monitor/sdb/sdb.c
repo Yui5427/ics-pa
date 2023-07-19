@@ -207,16 +207,10 @@ void sdb_mainloop() {
     strcpy(copy_line, line);
 
     bool success = false;
-    //split(line, &sum, &ex);
-    printf("line1:%s\n", copy_line);
     char *sum = strtok(copy_line, " ");
     strcpy(copy_sum, sum);
-    printf("line2:%s\n", copy_line);
-    printf("sum:%s\n", copy_line);
     char *ex = strtok(NULL, "\n");
     strcpy(copy_ex, ex);
-    printf("sum:%s, ex:%s\n", copy_sum, copy_ex);
-
     word_t result = expr(copy_ex, &success);
     if (success) {
       printf("right sum:%s, %s = %u\n",sum, line, result);
