@@ -173,7 +173,6 @@ char getMainOp(int p, int q, int* position) {
   int count=0;
   char mainOp=-1;
   int mainOpPriority=-1;
-  printf("q:%d\n", q);
   for(;i<=q;i++){
     if(tokens[i].str[0]=='(')
       count++;
