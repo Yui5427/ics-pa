@@ -192,8 +192,10 @@ void sdb_mainloop() {
   ssize_t read;
   int line_num = 0;
   while ((read = getline(&line, &len, fp)) != -1) {
+    char copy_line[1024];
+    strcpy(copy_line, line);
     printf("\n");
-    printf("line: %s", line);
+    //printf("line: %s", line);
     line_num++;
 
     bool success = false;
@@ -201,6 +203,7 @@ void sdb_mainloop() {
     char *ex = strtok(NULL, "\n");
     word_t result = expr(ex, &success);
     if (success && result != atoi(sum)) {
+      printf("line: %s", copy_line);
       printf("line: %s\n", line);
       printf("sum:%s, result: %u\n",sum, result);
       //printf("%s\n", line);
