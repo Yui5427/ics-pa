@@ -46,6 +46,7 @@ void writeToBuf(char *str, int len) {
   int i;
   for(i=0;i<len;i++){
     buf[bufPtr++] = str[i];
+    str
   }
 }
 
