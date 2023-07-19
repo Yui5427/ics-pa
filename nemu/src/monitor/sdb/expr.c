@@ -225,7 +225,7 @@ word_t eval(int p, int q) {
     if(tokens[p].type == TK_HEX) {
       //sscanf(tokens[p].str+2, "%ux", &ret);
       ret = hexToU32(tokens[p].str);
-      printf("ret=%u\n", ret);
+      //printf("ret=%u\n", ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
@@ -242,7 +242,7 @@ word_t eval(int p, int q) {
     word_t val1 = eval(p, posi-1);
     word_t val2 = eval(posi+1, q);
 
-    printf("val1=%u, op: %c, val2=%u\n", val1, op_type, val2);
+    //printf("val1=%u, op: %c, val2=%u\n", val1, op_type, val2);
 
     switch (op_type)
     {
