@@ -203,8 +203,8 @@ char getMainOp(int p, int q, int* position) {
 
 word_t hexToU32(char* str) {
   word_t ret=0;
-  int i = 9;
-  for(;i>=2;i++) {
+  int i = 2;
+  for(;i<=9;i++) {
     if(str[i]>='0'&&str[i]<='9')
       ret = (str[i]-'0') + ret*16;
     else if(str[i]>='a'&&str[i]<='f')
