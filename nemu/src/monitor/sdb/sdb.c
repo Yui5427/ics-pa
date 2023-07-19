@@ -115,7 +115,7 @@ static int cmd_x(char *args) {
   }
 
   if(expr_value < 0x80000000) {
-    printf("Out of bound of pmem");
+    printf("Out of bound of pmem\n");
     return 0;
   }
 
