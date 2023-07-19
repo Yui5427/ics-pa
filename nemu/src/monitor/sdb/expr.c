@@ -157,6 +157,8 @@ bool check_parentheses(int p, int q) {
     int i=p+1;
     int count=1;
     for(;i<=q;i++){
+      if(!count)
+        return false;
       if(tokens[i].str[0]=='(')
         count++;
       else if(tokens[i].str[0]==')')
@@ -164,9 +166,6 @@ bool check_parentheses(int p, int q) {
     }
     if(count != 0)
       return false;
-    else if(i != q)
-      return false;
-
   }
   return true;
 };
