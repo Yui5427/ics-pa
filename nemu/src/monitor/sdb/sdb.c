@@ -208,7 +208,7 @@ void sdb_mainloop() {
     char *sum = strtok(line, " ");
     char *ex = strtok(NULL, "\n");
     word_t result = expr(ex, &success);
-    if (success && result != atoi(sum)) {
+    if (success) {
       printf("\n");
       printf("line: %s", copy_line);
       printf("line: %s\n", line);
