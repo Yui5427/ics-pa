@@ -207,7 +207,7 @@ word_t eval(int p, int q) {
   } else if(p == q) {
     word_t ret;
     if(tokens[p].type == TK_HEX) {
-      sscanf(tokens[p].str+2, "%08x", &ret);
+      sscanf(tokens[p].str+2, "%08ux", &ret);
       return ret;
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
