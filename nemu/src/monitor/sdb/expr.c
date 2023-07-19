@@ -239,8 +239,8 @@ word_t eval(int p, int q) {
   } else {
     int posi;
     char op_type = getMainOp(p, q, &posi);
-    word_t val1 = eval(p, posi-1);
-    word_t val2 = eval(posi+1, q);
+    int val1 = eval(p, posi-1);
+    int val2 = eval(posi+1, q);
 
     //printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
 
