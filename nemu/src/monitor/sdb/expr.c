@@ -183,15 +183,15 @@ char getMainOp(int p, int q, int* position) {
       count--;
     else if(count==0){
       if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
-        if(mainOpPriority<=1){
-          mainOpPriority=1;
+        if(mainOpPriority<=2){
+          mainOpPriority=2;
           mainOp=tokens[i].str[0];
           *position = i;
         }
       }
       else if(tokens[i].str[0]=='*'||tokens[i].str[0]=='/'){
-        if(mainOpPriority<=2){
-          mainOpPriority=2;
+        if(mainOpPriority<=1){
+          mainOpPriority=1;
           mainOp=tokens[i].str[0];
           *position = i;
         }
