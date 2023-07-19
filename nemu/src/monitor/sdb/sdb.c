@@ -192,6 +192,7 @@ void sdb_mainloop() {
   ssize_t read;
   int line_num = 0;
   while ((read = getline(&line, &len, fp)) != -1) {
+    printf("\n");
     printf("line: %s", line);
     line_num++;
 
@@ -200,10 +201,8 @@ void sdb_mainloop() {
     char *ex = strtok(NULL, "\n");
     word_t result = expr(ex, &success);
     if (success) {
-      printf("\n");
       printf("line: %s\n", line);
       printf("sum:%s, result: %u\n",sum, result);
-      printf("\n");
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
