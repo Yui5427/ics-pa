@@ -177,15 +177,6 @@ void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
 
-void split(char *str, char **out1, char **out2) {
-  *out1 = str;
-  int i=0;
-  while(str[i] != ' ') {
-    i++;
-  }
-  *out2 = str + i + 1;
-}
-
 void sdb_mainloop() {
   if (is_batch_mode) {
     cmd_c(NULL);
@@ -199,12 +190,15 @@ void sdb_mainloop() {
   char *line = NULL;
   size_t len = 0;
   ssize_t read;
+  int line_num = 0;
   while ((read = getline(&line, &len, fp)) != -1) {
     char copy_line[1024];
     char copy_sum[1024];
     char copy_ex[1024];
 
     strcpy(copy_line, line);
+
+    printf("line_num: %d",line_num);
 
     bool success = false;
     char *sum = strtok(copy_line, " ");

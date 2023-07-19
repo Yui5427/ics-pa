@@ -236,7 +236,7 @@ word_t eval(int p, int q) {
       if(val2 == 0) {
         printf("Divide by zero\n");
         isDivByZero = 1;
-        return -1;
+        return 0;
       }
       return val1/val2;
     default:
