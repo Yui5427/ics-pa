@@ -113,6 +113,11 @@ static int cmd_x(char *args) {
     return 0;
   }
 
+  if(expr_value < 0x80000000) {
+    printf("Out of bound of pmem");
+    return 0;
+  }
+
   printf("N:%d, Expr:%s, Value:%08x, ok?:%b\n", n, e, expr_value, ok);
   printf("Address\t\tDword block\tByte sequence\n");
 
