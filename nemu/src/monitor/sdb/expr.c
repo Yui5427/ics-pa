@@ -244,6 +244,10 @@ word_t eval(int p, int q) {
     case '*':
       return val1*val2;
     case '/':
+      if(val2 == 0) {
+        printf("Divide by zero\n");
+        assert(0);
+      }
       return val1/val2;
     default:
       printf("Wrong Operator\n");
