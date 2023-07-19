@@ -251,7 +251,7 @@ word_t expr(char *e, bool *success) {
     printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
   }
 
-  word_t ret = eval(0, nr_token);
+  word_t ret = eval(0, nr_token-1);
   *success = true;
   return ret;
 

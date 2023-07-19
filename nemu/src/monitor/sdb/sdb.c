@@ -211,9 +211,9 @@ void sdb_mainloop() {
     strcpy(copy_ex, ex);
     printf("sum:%s, ex:%s\n", copy_sum, copy_ex);
 
-    word_t result = expr(copy_ex, &success);
+    //word_t result = expr(copy_ex, &success);
     if (success) {
-      printf("right sum:%s, %s = %u\n",sum, line, result);
+      //printf("right sum:%s, %s = %u\n",sum, line, result);
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
