@@ -242,7 +242,7 @@ word_t eval(int p, int q) {
     word_t val1 = eval(p, posi-1);
     word_t val2 = eval(posi+1, q);
 
-    printf("val1=%u, val2=%u\n", val1, val2);
+    printf("val1=%u, op: %c, val2=%u\n", val1, op_type, val2);
 
     switch (op_type)
     {
