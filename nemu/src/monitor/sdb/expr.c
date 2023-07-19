@@ -270,6 +270,11 @@ word_t expr(char *e, bool *success) {
   }
 
   word_t ret = eval(0, nr_token-1);
+  if(isDivByZero == 1) {
+    *success = false;
+    return 0;
+  }
+  isDivByZero = 0;
   *success = true;
   return ret;
 
