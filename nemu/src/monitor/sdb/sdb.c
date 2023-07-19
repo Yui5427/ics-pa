@@ -201,9 +201,9 @@ void sdb_mainloop() {
     printf("sum:%s, ex:%s\n", sum, ex);
     ex[sizeof(ex)] = ' ';
     
-    word_t result = expr(ex, &success);
+    //word_t result = expr(ex, &success);
     if (success) {
-      printf("right sum:%s, %s = %u\n",sum, line, result);
+      //printf("right sum:%s, %s = %u\n",sum, line, result);
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
