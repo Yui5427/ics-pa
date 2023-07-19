@@ -55,6 +55,7 @@ static struct rule {
 #define NR_REGEX ARRLEN(rules)
 
 static regex_t re[NR_REGEX] = {};
+static int isDivByZero = 0;
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -246,7 +247,8 @@ word_t eval(int p, int q) {
     case '/':
       if(val2 == 0) {
         printf("Divide by zero\n");
-        assert(0);
+        isDivByZero = 1;
+        return -1;
       }
       return val1/val2;
     default:
