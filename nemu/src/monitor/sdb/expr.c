@@ -300,9 +300,9 @@ word_t eval(int p, int q) {
     switch (op_type)
     {
     case TK_DEREF:
-      printf("posi=%d, op: %c\n", posi, op_type);
+      //printf("posi=%d, op: %c\n", posi, op_type);
       int val = eval(posi+1, q);
-      printf("val=%u\n", val);
+      //printf("val=%u\n", val);
       return vaddr_read(val, 4);
     case TK_EQL:
       return val1==val2;
