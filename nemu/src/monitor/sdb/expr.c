@@ -194,6 +194,11 @@ char getMainOp(int p, int q, int* position) {
         if(mainOpPriority<=3){
           mainOpPriority=3;
           mainOp=tokens[i].str[0];
+          if(tokens[i].type == TK_NEQL) {
+            mainOp = TK_NEQL;
+          } else {
+            mainOp = TK_EQL;
+          }
           *position = i;
         }
       }
