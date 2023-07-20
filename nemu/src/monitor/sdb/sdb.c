@@ -205,13 +205,13 @@ void sdb_mainloop() {
     line_num++;
 
     bool success = false;
-    char *sum = strtok(line, " ");
-    char *ex = strtok(NULL, "\n");
-    word_t result = expr(ex, &success);
+    //char *sum = strtok(line, " ");
+    //char *ex = strtok(NULL, "\n");
+    //word_t result = expr(ex, &success);
     if (success) {
-      printf("\n");
-      printf("line: %s", copy_line);
-      printf("sum:%s, result: %u\n",sum, result);
+      //printf("\n");
+      //printf("line: %s", copy_line);
+      //printf("sum:%s, result: %u\n",sum, result);
       //printf("%s\n", line);
     } else {
       //printf("Invalid expression\n");
