@@ -192,15 +192,15 @@ char getMainOp(int p, int q, int* position) {
       count--;
     else if(count==0){
       if(tokens[i].str[0]=='&') {
-        if(mainOpPriority<=4){
-          mainOpPriority=4;
+        if(mainOpPriority<=5){
+          mainOpPriority=5;
           mainOp=TK_AND;
           *position = i;
         }
       }
       else if(tokens[i].str[0]=='='||tokens[i].str[0]=='!'){
-        if(mainOpPriority<=3){
-          mainOpPriority=3;
+        if(mainOpPriority<=4){
+          mainOpPriority=4;
           if(tokens[i].type == TK_NEQL) {
             mainOp = TK_NEQL;
           } else {
@@ -210,16 +210,23 @@ char getMainOp(int p, int q, int* position) {
         }
       }
       else if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
+        if(mainOpPriority<=3){
+          mainOpPriority=3;
+          mainOp=tokens[i].str[0];
+          *position = i;
+        }
+      }
+      else if(tokens[i].str[0]=='*'||tokens[i].str[0]=='/'){
         if(mainOpPriority<=2){
           mainOpPriority=2;
           mainOp=tokens[i].str[0];
           *position = i;
         }
       }
-      else if(tokens[i].str[0]=='*'||tokens[i].str[0]=='/'){
+      else if(tokens[i].type == TK_DEREF) {
         if(mainOpPriority<=1){
           mainOpPriority=1;
-          mainOp=tokens[i].str[0];
+          mainOp=TK_DEREF;
           *position = i;
         }
       }
