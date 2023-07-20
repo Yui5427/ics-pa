@@ -27,6 +27,10 @@ enum {
   TK_HEX,
   TK_DEC,
   TK_REG,
+  TK_EQL,
+  TK_NEQL,
+  TK_AND,
+  TK_DEREF,
 };
 
 static struct rule {
@@ -42,14 +46,16 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"0x[a-fA-F0-9]+", TK_HEX},   // HEX
   {"[0-9]+", TK_DEC},     // DEC
-  {"$0|ra|sp|gp|tp|t[0-6]|s[0-9]|a[0-7]|s10|s11|pc", TK_REG},// REG
+  {"$[0|ra|sp|gp|tp|t[0-6]|s[0-9]|a[0-7]|s10|s11|pc]", TK_REG},// REG
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
-  {"\\*", '*'},         // multiply
+  {"\\*", '*'},         // multiply or dereference
   {"\\/", '/'},         // divide
+  {"\\==", TK_EQL},         // equal
+  {"\\!=", TK_NEQL},         // not equal
+  {"\\&&", TK_AND},         // and
   {"\\(", '('},         // left bracket
   {"\\)", ')'},         // right bracket
-
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -134,7 +140,9 @@ static bool make_token(char *e) {
           case '/': tokens[nr_token].type='/'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
           case '(': tokens[nr_token].type='('; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
           case ')': tokens[nr_token].type=')'; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
-
+          case TK_EQL: tokens[nr_token].type=TK_EQL; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case TK_NEQL: tokens[nr_token].type=TK_NEQL; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
+          case TK_AND: tokens[nr_token].type=TK_AND; getSubStr(substr_start, 0, substr_len,tokens[nr_token].str); nr_token++; break;
           default: Log("This token is not matched: %s", substr_start); return false;
         }
 
@@ -182,7 +190,14 @@ char getMainOp(int p, int q, int* position) {
     else if(tokens[i].str[0]==')')
       count--;
     else if(count==0){
-      if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
+      if(tokens[i].type == TK_NEQL || tokens[i].type == TK_EQL){
+        if(mainOpPriority<=3){
+          mainOpPriority=3;
+          mainOp=tokens[i].str[0];
+          *position = i;
+        }
+      }
+      else if(tokens[i].str[0]=='+'||tokens[i].str[0]=='-'){
         if(mainOpPriority<=2){
           mainOpPriority=2;
           mainOp=tokens[i].str[0];
@@ -246,6 +261,12 @@ word_t eval(int p, int q) {
 
     switch (op_type)
     {
+    case TK_EQL:
+      return val1==val2;
+    case TK_NEQL:
+      return val1!=val2;
+    case TK_AND:
+      return val1&&val2;
     case '+':
       return val1+val2;
     case '-':
