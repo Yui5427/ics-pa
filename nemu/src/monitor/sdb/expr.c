@@ -255,7 +255,7 @@ word_t hexToU32(char* str) {
 
 word_t eval(int p, int q) {
   if(p>q) {
-    printf("1\n");
+    //printf("1\n");
     return -1;
   } else if(p == q) {
     printf("2\n");
