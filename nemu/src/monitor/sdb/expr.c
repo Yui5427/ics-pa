@@ -279,6 +279,7 @@ word_t eval(int p, int q) {
     switch (op_type)
     {
     case TK_DEREF:
+      printf("Im here\n");
       return vaddr_read(val2, 4);
     case TK_EQL:
       return val1==val2;
