@@ -19,6 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <memory/vaddr.h>
 
 enum {
   TK_NOTYPE = 0, TK_EQ,
@@ -277,6 +278,8 @@ word_t eval(int p, int q) {
 
     switch (op_type)
     {
+    case TK_DEREF:
+      return vaddr_read(val2, 4);
     case TK_EQL:
       return val1==val2;
     case TK_NEQL:
@@ -311,6 +314,10 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   for(int i=0;i<nr_token;i++){
+    if(tokens[i].type == '*' && (i==0 || (tokens[i-1].type != TK_DEC && tokens[i-1].type != TK_HEX && tokens[i-1].type != TK_REG && tokens[i-1].str[0] != ')'))) {
+      tokens[i].type = TK_DEREF;
+    }
+
     printf("Token[%d]:  type= %d\tstr= %s\n",i,tokens[i].type,tokens[i].str);
   }
 
