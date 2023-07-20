@@ -190,10 +190,16 @@ char getMainOp(int p, int q, int* position) {
     else if(tokens[i].str[0]==')')
       count--;
     else if(count==0){
-      if(tokens[i].str[0]=='='||tokens[i].str[0]=='!'){
+      if(tokens[i].str[0]=='&') {
+        if(mainOpPriority<=4){
+          mainOpPriority=4;
+          mainOp=TK_AND;
+          *position = i;
+        }
+      }
+      else if(tokens[i].str[0]=='='||tokens[i].str[0]=='!'){
         if(mainOpPriority<=3){
           mainOpPriority=3;
-          mainOp=tokens[i].str[0];
           if(tokens[i].type == TK_NEQL) {
             mainOp = TK_NEQL;
           } else {
