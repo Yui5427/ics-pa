@@ -255,9 +255,10 @@ word_t eval(int p, int q) {
     printf("3\n");
     return eval(p+1, q-1);
   } else {
-    printf("4\n");
+    //printf("4\n");
     int posi;
     char op_type = getMainOp(p, q, &posi);
+    printf("posi=%d, op: %c\n", posi, op_type);
     int val1 = eval(p, posi-1);
     int val2 = eval(posi+1, q);
 
