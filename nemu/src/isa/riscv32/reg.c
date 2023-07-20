@@ -32,14 +32,16 @@ void isa_reg_display() {
 
 word_t isa_reg_str2val(const char *s, bool *success) {
   if(s[0] == 'x') {
+    *success = 1;
     return cpu.gpr[s[1] - '0'];
   } else {
     for(int i = 0; i < 32; i++) {
+      *success = 1;
       if(strcmp(s, regs[i]) == 0) {
         return cpu.gpr[i];
       }
     }
   }
-
-  return 0;
+  *success = 0;
+  return -1;
 }

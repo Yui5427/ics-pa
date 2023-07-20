@@ -64,6 +64,7 @@ static struct rule {
 
 static regex_t re[NR_REGEX] = {};
 static int isDivByZero = 0;
+static int isReg = 1;
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -264,6 +265,17 @@ word_t eval(int p, int q) {
       ret = hexToU32(tokens[p].str);
       //printf("ret=%u\n", ret);
       return ret;
+    } else if(tokens[p].type == TK_REG) {
+      bool success = true;
+      word_t ret = isa_reg_str2val(tokens[p].str, &success);
+      if(success) {
+        isReg = true;
+        return ret;
+      } else {
+        isReg = false;
+        printf("Not a valid register: %s\n", tokens[p].str);
+        return -1;
+      }
     } else if(tokens[p].type == TK_DEC) {
       sscanf(tokens[p].str, "%ud", &ret);
       return ret;
@@ -334,12 +346,21 @@ word_t expr(char *e, bool *success) {
   }
 
   word_t ret = eval(0, nr_token-1);
+
   if(isDivByZero == 1) {
     *success = false;
     isDivByZero = 0;
     //printf("isSuccess? :%d\n", *success);
     return 0;
   }
+
+  if(isReg == 0) {
+    *success = false;
+    isReg = 1;
+    //printf("isSuccess? :%d\n", *success);
+    return 0;
+  }
+
   isDivByZero = 0;
   *success = true;
   //printf("isSuccess? :%d\n", *success);
