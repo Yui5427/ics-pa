@@ -257,7 +257,7 @@ word_t eval(int p, int q) {
     int val1 = eval(p, posi-1);
     int val2 = eval(posi+1, q);
 
-    //printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
+    printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
 
     switch (op_type)
     {
@@ -295,7 +295,7 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   for(int i=0;i<nr_token;i++){
-    //printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
+    printf("Token[%d]:\ttype=%d\tstr=%s\n",i,tokens[i].type,tokens[i].str);
   }
 
   word_t ret = eval(0, nr_token-1);
