@@ -31,6 +31,7 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+  s = s+1;
   if(s[0] == 'x') {
     *success = 1;
     return cpu.gpr[s[1] - '0'];
