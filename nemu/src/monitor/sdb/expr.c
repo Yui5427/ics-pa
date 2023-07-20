@@ -291,11 +291,11 @@ word_t eval(int p, int q) {
     int posi;
     char op_type = getMainOp(p, q, &posi);
 
-    printf("posi=%d, op: %c\n", posi, op_type);
+    //printf("posi=%d, op: %c\n", posi, op_type);
     int val1 = eval(p, posi-1);
     int val2 = eval(posi+1, q);
 
-    printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
+    //printf("val1=%u, op: %c, val2=%u, val = %u. \n", val1, op_type, val2, val1+val2);
 
     switch (op_type)
     {
