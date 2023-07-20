@@ -19,6 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <cpu/cpu.h>
 #include <memory/vaddr.h>
 
 enum {
@@ -278,13 +279,6 @@ word_t eval(int p, int q) {
     int posi;
     char op_type = getMainOp(p, q, &posi);
 
-    if(op_type == TK_DEREF) {
-      printf("posi=%d, op: %c\n", posi, op_type);
-      int val = eval(posi+1, q);
-      printf("val=%u\n", val);
-      return vaddr_read(val, 4);
-    }
-
     printf("posi=%d, op: %c\n", posi, op_type);
     int val1 = eval(p, posi-1);
     int val2 = eval(posi+1, q);
@@ -293,6 +287,11 @@ word_t eval(int p, int q) {
 
     switch (op_type)
     {
+    case TK_DEREF:
+      printf("posi=%d, op: %c\n", posi, op_type);
+      int val = eval(posi+1, q);
+      printf("val=%u\n", val);
+      return vaddr_read(val, 4);
     case TK_EQL:
       return val1==val2;
     case TK_NEQL:
