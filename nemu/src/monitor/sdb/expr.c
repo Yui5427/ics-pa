@@ -48,7 +48,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"0x[a-fA-F0-9]+", TK_HEX},   // HEX
   {"[0-9]+", TK_DEC},     // DEC
-  {"$[0|ra|sp|gp|tp|t[0-6]|s[0-9]|a[0-7]|s10|s11|pc]", TK_REG},// REG
+  {"[$0|ra|sp|gp|tp|t[0-6]|s[0-9]|a[0-7]|s10|s11|pc]", TK_REG},// REG
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
   {"\\*", '*'},         // multiply or dereference
