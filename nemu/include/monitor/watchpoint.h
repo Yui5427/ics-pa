@@ -20,4 +20,4 @@ WP* find_wp(int NO);
 
 void watchpoints_display();
 word_t exprAgain(char *e, bool *success);
-void check_wp();
+int check_wp();

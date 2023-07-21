@@ -41,7 +41,12 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
 #ifdef CONFIG_WATCHPOINT
-  check_wp();
+  int ret = check_wp();
+  if(ret) {
+    nemu_state.state = NEMU_STOP;
+    nemu_state.halt_ret = ret;
+    nemu_state.halt_pc = _this->pc;
+  }
 #endif
 }
 
