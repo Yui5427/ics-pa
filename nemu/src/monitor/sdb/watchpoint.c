@@ -14,7 +14,7 @@
 ***************************************************************************************/
 
 #include "sdb.h"
-#include "watchpoint.h"
+#include <monitor/watchpoint.h>
 
 void init_wp_pool() {
   int i;
@@ -76,9 +76,9 @@ WP* find_wp(int NO) {
 
 void watchpoints_display() {
     WP *p = head;
-    printf("Num\tWhat\n");
+    printf("Num\tWhat\tBefore value\n");
     while(p != NULL) {
-      printf("%d\t%s\n", p->NO, p->expr);
+      printf("%d\t%s\t%u\n", p->NO, p->expr, p->before_value);
       p = p->next;
     }
 }

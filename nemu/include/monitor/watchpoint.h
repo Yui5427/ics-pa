@@ -6,6 +6,7 @@ typedef struct watchpoint {
 
   /* TODO: Add more members if necessary */
   char expr[128];
+  word_t before_value;
 
 } WP;
 

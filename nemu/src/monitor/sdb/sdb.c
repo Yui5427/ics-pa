@@ -19,8 +19,9 @@
 #include <stdio.h>
 #include <readline/history.h>
 #include <memory/vaddr.h>
+#include <monitor/watchpoint.h>
 #include "sdb.h"
-#include "watchpoint.h"
+
 
 static int is_batch_mode = false;
 
@@ -145,7 +146,7 @@ static int cmd_w(char *args) {
   WP *wp = new_wp();
   bool ok = false;
 
-  expr(args, &ok);
+  word_t ret = expr(args, &ok);
   if(!ok)
   {
     printf("Invalid expression\n");
@@ -153,6 +154,7 @@ static int cmd_w(char *args) {
   }
 
   strcpy(wp->expr, args);
+  wp->before_value = ret;
   printf("Set watchpoint %d\n", wp->NO);
   return 0;
 }
