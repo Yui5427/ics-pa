@@ -38,34 +38,42 @@ WP* new_wp() {
   free_ = free_->next;
   p->next = head;
   head = p;
-  printf("No:%d\n", head->NO);
   return p;
 }
 
-void free_wp(WP *wp) {
-  if(wp == NULL) {
-    printf("No such watchpoint\n");
-    assert(0);
-  }
+int free_wp(WP *wp) {
   WP *p = head;
   if(p == wp) {
     head = head->next;
     wp->next = free_;
     free_ = wp;
-    return;
+    return 1;
   }
   while(p->next != NULL) {
     if(p->next == wp) {
       p->next = p->next->next;
       wp->next = free_;
       free_ = wp;
-      return;
+      return 1;
     }
     p = p->next;
   }
   printf("No such watchpoint\n");
-  assert(0);
+  return 0;
 }
+
+WP* find_wp(int NO) {
+  WP *p = head;
+  while(p != NULL) {
+    if(p->NO == NO) {
+      return p;
+    }
+    p = p->next;
+  }
+  printf("No such watchpoint\n");
+  return NULL;
+}
+
 void watchpoints_display() {
     WP *p = head;
     printf("Num\tWhat\n");

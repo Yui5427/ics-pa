@@ -94,7 +94,6 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
   if(args[0] == 'r')
   {
-    //printf("I'm here\n");
     isa_reg_display();
   } else if(args[0] == 'w') {
     watchpoints_display();
@@ -161,16 +160,11 @@ static int cmd_w(char *args) {
 static int cmd_d(char *args) {
   char *arg = strtok(NULL, " ");
   int n = atoi(arg);
-  WP *p = head;
-  while(p != NULL) {
-    if(p->NO == n) {
-      free_wp(p);
-      printf("Delete watchpoint %d\n", n);
-      return 0;
-    }
-    p = p->next;
+
+  if(free_wp(find_wp(n))){
+    printf("Watchpoint %d deleted\n", n);
   }
-  printf("No such watchpoint\n");
+
   return 0;
 }
 

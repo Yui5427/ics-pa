@@ -10,10 +10,11 @@ typedef struct watchpoint {
 } WP;
 
 static WP wp_pool[NR_WP] __attribute__((used)) = {};
-static WP *head = NULL, *free_ __attribute__((used)) = NULL;
+static WP *head __attribute__((used)) = NULL, *free_ __attribute__((used)) = NULL;
 
 WP* new_wp();
 
-void free_wp(WP *wp);
+int free_wp(WP *wp);
+WP* find_wp(int NO);
 
 void watchpoints_display();
