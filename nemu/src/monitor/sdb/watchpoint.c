@@ -66,3 +66,11 @@ void free_wp(WP *wp) {
   printf("No such watchpoint\n");
   assert(0);
 }
+void watchpoints_display() {
+    WP *p = head;
+    printf("Num\tWhat\n");
+    while(p != NULL) {
+      printf("%d\t%s\n", p->NO, p->expr);
+      p = p->next;
+    }
+}

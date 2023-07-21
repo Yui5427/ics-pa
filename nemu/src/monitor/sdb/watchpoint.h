@@ -15,3 +15,5 @@ static WP *head = NULL, *free_ __attribute__((used)) = NULL;
 WP* new_wp();
 
 void free_wp(WP *wp);
+
+void watchpoints_display();

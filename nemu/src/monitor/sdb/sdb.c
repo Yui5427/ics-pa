@@ -97,12 +97,7 @@ static int cmd_info(char *args) {
     //printf("I'm here\n");
     isa_reg_display();
   } else if(args[0] == 'w') {
-    WP *p = head;
-    printf("Num\tWhat\n");
-    while(p != NULL) {
-      printf("%d\t%s\n", p->NO, p->expr);
-      p = p->next;
-    }
+    watchpoints_display();
   } else {
     printf("Invalid input\n");
   }
