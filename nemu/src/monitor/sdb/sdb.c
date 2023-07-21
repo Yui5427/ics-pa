@@ -91,11 +91,20 @@ static int cmd_si(char *args) {
   return 0;
 }
 
-static int cmd_info_r(char *args) {
+static int cmd_info(char *args) {
   if(args[0] == 'r')
   {
     //printf("I'm here\n");
     isa_reg_display();
+  } else if(args[0] == 'w') {
+    WP *p = head;
+    printf("Num\tWhat\n");
+    while(p != NULL) {
+      printf("%d\t%s\n", p->NO, p->expr);
+      p = p->next;
+    }
+  } else {
+    printf("Invalid input\n");
   }
   return 0;
 }
@@ -186,7 +195,7 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "Execute one instruction" , cmd_si },
-  { "info", "Print register's values", cmd_info_r },
+  { "info", "Print register's values", cmd_info },
   { "x", "Print menmory space", cmd_x },
   { "w", "Set watchpoint", cmd_w },
   { "d", "Delete watchpoint", cmd_d },
