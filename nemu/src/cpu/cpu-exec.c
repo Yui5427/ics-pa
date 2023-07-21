@@ -41,7 +41,19 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
 #ifdef CONFIG_WATCHPOINT
-
+  WP* temp = head;
+  while(temp) {
+    bool success;
+    word_t ret = exprAgain(temp->expr, &success);
+    if(ret != temp->before_value) {
+      printf("Watchpoint %d: %s\n", temp->NO, temp->expr);
+      printf("Old value = %d\n", temp->before_value);
+      printf("New value = %d\n", ret);
+      temp->before_value = ret;
+      nemu_state.state = NEMU_STOP;
+      return;
+    }
+  }
 #endif
 }
 

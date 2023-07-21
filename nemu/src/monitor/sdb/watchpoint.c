@@ -82,3 +82,7 @@ void watchpoints_display() {
       p = p->next;
     }
 }
+
+word_t exprAgain(char *e, bool *success) {
+  return expr(e, success);
+}
