@@ -45,6 +45,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   while(temp) {
     bool success;
     word_t ret = exprAgain(temp->expr, &success);
+    printf("temp->expr = %s\n", temp->expr);
     if(ret != temp->before_value) {
       printf("Watchpoint %d: %s\n", temp->NO, temp->expr);
       printf("Old value = %d\n", temp->before_value);
