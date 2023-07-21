@@ -258,7 +258,6 @@ word_t eval(int p, int q) {
     //printf("1\n");
     return -1;
   } else if(p == q) {
-    printf("2\n");
     word_t ret;
     if(tokens[p].type == TK_HEX) {
       //sscanf(tokens[p].str+2, "%ux", &ret);
@@ -284,7 +283,6 @@ word_t eval(int p, int q) {
       return -1;
     }
   } else if(check_parentheses(p,q) == true) {
-    printf("3\n");
     return eval(p+1, q-1);
   } else {
     //printf("4\n");
@@ -342,7 +340,7 @@ word_t expr(char *e, bool *success) {
       tokens[i].type = TK_DEREF;
     }
 
-    printf("Token[%d]:  type= %d\tstr= %s\n",i,tokens[i].type,tokens[i].str);
+    //printf("Token[%d]:  type= %d\tstr= %s\n",i,tokens[i].type,tokens[i].str);
   }
 
   word_t ret = eval(0, nr_token-1);

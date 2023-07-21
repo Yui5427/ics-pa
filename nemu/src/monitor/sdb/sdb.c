@@ -158,10 +158,7 @@ static int cmd_w(char *args) {
     return 0;
   }
 
-  printf("here\n");
-
   strcpy(wp->expr, args);
-  printf("here\n");
   printf("Set watchpoint %d\n", wp->NO);
   return 0;
 }
