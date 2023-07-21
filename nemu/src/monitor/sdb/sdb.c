@@ -142,6 +142,9 @@ static int cmd_w(char *args) {
   WP *wp = new_wp();
   char *arg = strtok(NULL, " ");
   bool ok = false;
+
+  printf("arg: %s\n", arg);
+
   expr(arg, &ok);
   if(!ok)
   {
