@@ -35,6 +35,9 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   if(s[0] == 'x') {
     *success = 1;
     return cpu.gpr[s[1] - '0'];
+  } else if(s[0] == 'p'){
+    *success = 1;
+    return cpu.pc;
   } else {
     for(int i = 0; i < 32; i++) {
       *success = 1;
