@@ -76,9 +76,9 @@ WP* find_wp(int NO) {
 
 void watchpoints_display() {
     WP *p = head;
-    printf("Num\tWhat\tBefore value\n");
+    printf("Num\t\tWhat\t\tBefore value\n");
     while(p != NULL) {
-      printf("%d\t%s\t%u\n", p->NO, p->expr, p->before_value);
+      printf("%d\t\t%s\t\t%u\n", p->NO, p->expr, p->before_value);
       p = p->next;
     }
 }
