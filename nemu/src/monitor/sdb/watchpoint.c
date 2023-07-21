@@ -35,10 +35,10 @@ WP* new_wp() {
     assert(0);
   }
   WP *p = free_;
-  printf("No:%d\n", p->NO);
   free_ = free_->next;
   p->next = head;
   head = p;
+  printf("No:%d\n", head->NO);
   return p;
 }
 
