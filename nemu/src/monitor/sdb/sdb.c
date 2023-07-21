@@ -100,6 +100,7 @@ static int cmd_info(char *args) {
     watchpoints_display();
   } else {
     printf("Invalid input\n");
+    return 0;
   }
   return 0;
 }
