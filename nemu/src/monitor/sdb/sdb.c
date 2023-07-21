@@ -141,6 +141,13 @@ static int cmd_x(char *args) {
 static int cmd_w(char *args) {
   WP *wp = new_wp();
   char *arg = strtok(NULL, " ");
+  bool ok = false;
+  expr(arg, &ok);
+  if(!ok)
+  {
+    printf("Invalid expression\n");
+    return 0;
+  }
 
   strcpy(wp->expr, arg);
   printf("Set watchpoint %d\n", wp->NO);
