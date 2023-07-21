@@ -93,10 +93,11 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-  if(args[0] == 'r')
+  char *arg = strtok(NULL, " ");
+  if(arg[0] == 'r')
   {
     isa_reg_display();
-  } else if(args[0] == 'w') {
+  } else if(arg[0] == 'w') {
     watchpoints_display();
   } else {
     printf("Invalid input\n");
