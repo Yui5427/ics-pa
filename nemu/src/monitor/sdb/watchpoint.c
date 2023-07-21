@@ -86,3 +86,18 @@ void watchpoints_display() {
 word_t exprAgain(char *e, bool *success) {
   return expr(e, success);
 }
+
+void check_wp() {
+  WP *p = head;
+  bool success = true;
+  while(p != NULL) {
+    word_t value = exprAgain(p->expr, &success);
+    if(value != p->before_value) {
+      printf("Watchpoint %d: %s\n", p->NO, p->expr);
+      printf("Old value = %u\n", p->before_value);
+      printf("New value = %u\n", value);
+      p->before_value = value;
+    }
+    p = p->next;
+  }
+}
