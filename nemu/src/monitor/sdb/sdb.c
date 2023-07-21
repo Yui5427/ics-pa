@@ -140,6 +140,7 @@ static int cmd_x(char *args) {
 
 static int cmd_w(char *args) {
   WP *wp = new_wp();
+  printf("arg: %s\n", args);
   char *arg = strtok(NULL, " ");
   bool ok = false;
 
