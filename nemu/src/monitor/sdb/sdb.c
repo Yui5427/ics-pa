@@ -20,6 +20,7 @@
 #include <readline/history.h>
 #include <memory/vaddr.h>
 #include "sdb.h"
+#include "watchpoint.h"
 
 static int is_batch_mode = false;
 
@@ -137,6 +138,38 @@ static int cmd_x(char *args) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  WP *wp = new_wp();
+  char *arg = strtok(NULL, " ");
+  bool ok = false;
+
+  if(!ok)
+  {
+    printf("Invalid expression\n");
+    return 0;
+  }
+
+  strcpy(wp->expr, arg);
+  printf("Set watchpoint %d\n", wp->NO);
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  char *arg = strtok(NULL, " ");
+  int n = atoi(arg);
+  WP *p = head;
+  while(p != NULL) {
+    if(p->NO == n) {
+      free_wp(p);
+      printf("Delete watchpoint %d\n", n);
+      return 0;
+    }
+    p = p->next;
+  }
+  printf("No such watchpoint\n");
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -151,7 +184,9 @@ static struct {
   /* TODO: Add more commands */
   { "si", "Execute one instruction" , cmd_si },
   { "info", "Print register's values", cmd_info_r },
-  { "x", "Print menmory space", cmd_x }
+  { "x", "Print menmory space", cmd_x },
+  { "w", "Set watchpoint", cmd_w },
+  { "d", "Delete watchpoint", cmd_d },
 };
 
 #define NR_CMD ARRLEN(cmd_table)
