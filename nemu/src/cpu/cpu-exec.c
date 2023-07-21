@@ -51,8 +51,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
       printf("New value = %d\n", ret);
       temp->before_value = ret;
       nemu_state.state = NEMU_STOP;
-      return;
     }
+    temp = temp->next;
   }
 #endif
 }
